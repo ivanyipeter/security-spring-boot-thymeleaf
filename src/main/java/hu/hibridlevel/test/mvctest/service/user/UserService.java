@@ -93,25 +93,11 @@ public class UserService {
         user.setUsername(userDto.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setActive(userDto.isActive());
-//        user.setRoles(asd(newRoles));
         addRoletoNewUser(newRoles, user);
         userRepository.save(user);
         LOGGER.debug("New user saved in database: {} ", user.getUsername());
         return user;
     }
-
-//    public Set<Role> asd(List<String> asd) {
-//        Set<Role> roles = new HashSet<>();
-//
-//        for (String role : asd) {
-//            Optional<Role> optionalRole = roleRepository.findRoleByRoleName(role);
-//
-//            if (optionalRole.isPresent()) {
-//                roles.add(optionalRole.get());
-//            }
-//        }
-//        return roles;
-//    }
 
     public User addRoletoNewUser(List<String> newRoles, User user) {
         Set<Role> updatedRoleSet = new HashSet<>();
