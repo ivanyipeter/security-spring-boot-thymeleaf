@@ -101,7 +101,6 @@ public class UserDataValidator {
         }
     }
 
-    //foreach PETI
     public void validateRole(List<String> roles, List<FieldError> errors) {
         if (roles.isEmpty()) {
             errors.add(new FieldError("user", "roles", "No role selected"));
