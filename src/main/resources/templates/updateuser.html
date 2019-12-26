@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="fragments/header :: header">
+</div>
+<div class="container" align="center">
+    <div th:if="${message}" th:text="${message}" class="alert alert-success"/>
+    <div th:if="${errors}">
+        <th:block th:each="error : ${errors}">
+            <div th:text="${error.getDefaultMessage()}" class="alert alert-danger"/>
+        </th:block>
+    </div>
+    <div class="container">
+        <h2>UPDATE USER</h2>
+        <br>
+        <div class="table table-striped">
+            <tr>
+                <h5>Username</h5>
+                <form th:action="@{/admin/updateuser/updateusername/}+${id}" method="post">
+                    <td><input type="text" th:value="${name}" th:name="name" style="width: 400px"/></td>
+                    <td><input type="submit" value="Update"/></td>
+                </form>
+                <br>
+                <h5>Active</h5>
+                <form th:action="@{/admin/updateuser/updateuseractive/}+${id}" method="post">
+                    <td><select class="form-control" th:name="activated" style="width: 400px">
+                        <option th:value="1">true</option>
+                        <option th:value="0">false</option>
+                        <br>
+                        <input type="submit" value="Update"/>
+                    </select></td>
+                </form>
+                <br>
+                <h5>Roles</h5>
+
+                <form th:action="@{/admin/updateuser/updateuserrole/}+${id}" method="post">
+                    <select multiple="multiple" th:name="roles" style="width: 400px">
+                        <option th:each="role : ${rolelist}"
+                                th:text="${role.role}"></option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Update"/>
+                </form>
+        </div>
+        </tr>
+    </div>
+</div>
+</body>
+</html>

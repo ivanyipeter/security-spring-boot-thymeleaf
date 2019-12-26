@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<section th:fragment="header">
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="container" align="center">
+            <a href="/admin/userlist">User list </a>
+            <a href="/admin/createnewuser">Create new user </a>
+            <a href="/admin/rolelist">Role list </a>
+            <a href="/admin/createnewrole">Create new role </a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </div>
+<br>
+<br>
+</section>
+</body>
+</html>

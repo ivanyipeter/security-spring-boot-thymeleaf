@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="fragments/header :: header">
+</div>
+<div class="container" align="center">
+    <div th:if="${message}" th:text="${message}" class="alert alert-success"/>
+    <div th:if="${errors}">
+        <th:block th:each="error : ${errors}">
+            <div th:text="${error.getDefaultMessage()}" class="alert alert-danger"/>
+        </th:block>
+    </div>
+</div>
+<div class="container"  align="center">
+    <h2>UPDATE ROLE</h2>
+    <br>
+    <div class="table table-striped">
+        <h5>Role</h5>
+        <form th:action="@{/admin/updaterole/}+${id}" method="post">
+            <input type="text" th:value="${role}" th:name="rolename" style="width: 400px"/>
+            <br>
+            <input type="submit" value="Update"/>
+        </form>
+    </div>
+</div>
+</body>

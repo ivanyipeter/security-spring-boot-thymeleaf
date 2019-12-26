@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="fragments/header :: header">
+</div>
+<div class="container" align="center">
+    <div th:if="${message}" th:text="${message}" class="alert alert-success"/>
+    <div th:if="${errors}">
+        <th:block th:each="error : ${errors}">
+            <div th:text="${error.getDefaultMessage()}" class="alert alert-danger"/>
+        </th:block>
+    </div>
+    <div class="container">
+        <h2>CREATE NEW USER</h2>
+        <br>
+        <div class="table table-striped">
+            <tr>
+                <h5>Username</h5>
+                <form th:action="@{/admin/createnewuser}" method="post">
+                    <td><input type="text" th:value="*{username}" th:name="username" style="width: 400px"/></td>
+                    <br>
+                    <h5>Password</h5>
+                    <td><input type="password" th:value="*{password}" th:name="password" style="width: 400px"/></td>
+                    <h5>Active</h5>
+                    <select class="form-control" th:name="active" style="width :400px">
+                        <option th:value="1">true</option>
+                        <option th:value="0">false</option>
+                    </select>
+                    <br>
+                    <h5>Roles</h5>
+                    <select multiple="multiple" th:name="chosenroles" style="width: 400px">
+                        <option th:each="role : ${rolelist}"
+                                th:text="${role.role}"></option>
+                        <br>
+                    </select>
+                    <br>
+                    <input type="submit" value="Create"/>
+                </form>
+            </tr>
+        </div>
+    </div>
+</div>
+</body>
+</html>
